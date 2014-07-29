@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  current_player_id: 1
+  board: MyString
+  userwin: MyString
+
+two:
+  current_player_id: 1
+  board: MyString
+  userwin: MyString

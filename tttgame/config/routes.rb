@@ -1,4 +1,35 @@
 Tttgame::Application.routes.draw do
+    
+  resources :moves
+
+
+  resources :games
+
+
+  root to: "users#index"
+  get 'login', to: 'sessions#new'
+  resources :sessions, only: [:new, :create, :destroy]  
+
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "sessions/destroy"
+
+  get "users/index"
+
+  resources :users
+
+  get "users/new"
+
+  get "users/create"
+
+  # get "gossip/index"
+
+  # get "secret/index"
+  get '/secret', to: 'secret#index'
+  get '/gossip', to: 'gossip#index'
+  get '/secreter', to: 'secret#really_secret'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
