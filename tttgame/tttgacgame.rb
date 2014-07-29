@@ -39,8 +39,8 @@ puts "Hello #{@player_two}, you are O. You go SECOND!\n\n"
     8 => "   ",
     }
 
-#2 d array of winning lines, used to simplify the win condition checking. 
-
+#try to use this 2d array to simplify the check for a winning condition below
+#considering whether I could reference the array index (within @winrows) rather than hash keys from @board
 @winrows = [
 ['a1','a2','a3'],
 ['b1','b2','b3'],
@@ -51,7 +51,7 @@ puts "Hello #{@player_two}, you are O. You go SECOND!\n\n"
 ['a1','b2','c3'],
 ['c1','b2','a3']
 ]
- # binding.pry
+ binding.pry
 # instance variable for winning pattern 
 @winx = " X  X  X "
 @wino = " O  O  O "    
@@ -129,10 +129,10 @@ while (@winrows[0]) != (@winx && @wino) &&
     player_one_play
     print_board
  
-        if (@winrows[0]) == @winx || (@winrows[1]) == @winx ||
-         (@winrows[2]) == @winx || (@winrows[3]) == @winx ||
-         (@winrows[4]) == @winx || (@winrows[5]) == @winx || 
-         (@winrows[6]) == @winx || (@winrose[7]) == @winx
+        if (@board[0] + @board[1] + @board[2]) == @winx || (@board[3] + @board[4] + @board[5]) == @winx ||
+         (@board[6] + @board[7] + @board[8]) == @winx || (@board[0] + @board[3] + @board[6]) == @winx ||
+         (@board[1] + @board[4] + @board[7]) == @winx || (@board[2] + @board[5] + @board[8]) == @winx || 
+         (@board[0] + @board[4] + @board[8]) == @winx || (@board[6] + @board[4] + @board[2]) == @winx
  
             puts "Good Effort, #{@player_one.upcase}, You Win!!!"
             puts "WTF!!, #{@player_two}.  Loser!!!."
@@ -149,11 +149,11 @@ while (@winrows[0]) != (@winx && @wino) &&
  
             player_two_play
             print_board
-
-            if (@winrows[0])== @wino || (@winrows[1]) == @wino ||
-           (@winrows[2]) == @wino || (@winrows[3]) == @wino ||
-           (@winrows[4]) == @wino || (@winrows[5]) == @wino || 
-           (@winrose[6]) == @wino || (@winrose[7]) == @wino
+ 
+            if (@board[0] + @board[1] + @board[2])== @wino || (@board[3] + @board[4] + @board[5]) == @wino ||
+           (@board[6] + @board[7] + @board[8]) == @wino || (@board[0] + @board[3] + @board[6]) == @wino ||
+           (@board[1] + @board[4] + @board[7]) == @wino || (@board[2] + @board[5] + @board[8]) == @wino || 
+           (@board[0] + @board[4] + @board[8]) == @wino || (@board[6] + @board[4] + @board[2]) == @wino
  
                  puts "Good Effort, #{@player_two.upcase}, You Win!!!"
                 puts "WTF, #{@player_one}.  Loser!!!."
