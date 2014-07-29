@@ -3,33 +3,28 @@
 #@player_two_score = 0
 # game_over = true
 # @user_score += 1
- 
-# @line = "==============================================================="
-# @header =  "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
- 
+
 # Greetings and directions:
-# puts "\n\n" + @header
-# puts @line
-puts "HELLO!!! Welcome to Ruby Tic Tac Toe!"
-# puts @line
-# puts @header
+
+puts "HELLO!!! This is Tic Tac Toe!"
+
 puts "\nTWO players required for this game"
 puts "Player one will be X, and player two will be O."
 puts "Player one goes first. and you take it in You must decide who will be players one and two."
 puts "You can switch it up if you play again!\n\n"
  
 # get and define player info:
-# puts @line
+
 puts "PLAYER ONE: What is your name?"
 @player_one = gets.chomp
 puts "Hello #{@player_one}, you are X. You go FIRST!\n\n"
  
-# puts @line
+
 puts "PLAYER TWO: What is your name?"
 @player_two = gets.chomp
 puts "Hello #{@player_two}, you are O. You go SECOND!\n\n"
  
-# creates new hash which represents the board's tiles
+# creates new hash which represents the cells on the Tic Tac Toe board
 @board = {
     0 => "   ",
     1 => "   ",
@@ -41,15 +36,27 @@ puts "Hello #{@player_two}, you are O. You go SECOND!\n\n"
     7 => "   ",
     8 => "   ",
     }
+
+#try to use this 2d array to simplify the check for a winning condition below
+#considering whether I could reference the array index (within @winrows) rather than hash keys from @board
+#@winrows = [
+#['a1','a2','a3'],
+#['b1','b2','b3'],
+#['c1','c2','c3'],
+#['a1','b1','c1'],
+#['a2','b2','c2'],
+#['a3','b3','c3'],
+#['a1','b2','c3'],
+#['c1','b2','a3']
+#]
  
 # instance variable for winning pattern 
 @winx = " X  X  X "
 @wino = " O  O  O "    
  
 # prints directions and confirms user understands
-# puts @line
+
 puts "DIRECTIONS"
-# puts @line
 puts "The board's numbers are as follows:\n\n"
 puts " 0 | 1 | 2 "
 puts "____________"
@@ -65,9 +72,8 @@ gets
 # method that prints current board
 def print_board    
     puts "\n\nCurrent Board, and the square numbers!"
-    # puts @line
     puts "CURRENT BOARD                        CELL NUMBERS"
-    # puts @line
+
     print @board[0], "|", @board[1], "|", @board[2], "                             0 | 1 | 2 "
     print "\n____________", "                          ____________\n"
     print @board[3], "|", @board[4], "|", @board[5], "                             3 | 4 | 5 "
@@ -75,9 +81,8 @@ def print_board
     print @board[6], "|", @board[7], "|", @board[8], "                             6 | 7 | 8 "
     puts "\n#{@player_one} is X."
     puts "#{@player_two} is O."
-    # puts @line
     puts "                     Go for It !!                  "
-    # puts @line
+    
     puts "\n"
 end
  
@@ -89,7 +94,6 @@ gets
  
 # method for player one's turn
 def player_one_play
-    # puts @line
     puts "#{@player_one.upcase}: Please choose your square!"
     @play_proc.call
     @board[@play.to_i] = " X " # replace the hash value in board
@@ -98,7 +102,6 @@ end
  
 # method for player two's turn
 def player_two_play
-    # puts @line
     puts "#{@player_two.upcase}: Please choose your square!"
     @play_proc.call
     @board[@play.to_i] = " O " # replace the hash value in board
