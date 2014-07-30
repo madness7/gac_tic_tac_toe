@@ -12,17 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :current_player_id %><br />
-    <%= f.number_field :current_player_id %>
+    <%= f.label :Current_Player %><br />
+    <%= f.number_field :creator_id %>
   </div>
   <div class="field">
-    <%= f.label :board %><br />
-    <%= f.text_field :board %>
+    <%= f.label :New_Player %><br />
+    <%= f.number_field :user_id %>
   </div>
-  <div class="field">
-    <%= f.label :userwin %><br />
-    <%= f.text_field :userwin %>
-  </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

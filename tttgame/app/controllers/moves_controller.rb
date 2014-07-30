@@ -1,7 +1,7 @@
 class MovesController < ApplicationController
   # GET /moves
   # GET /moves.json
-  def index
+  def index # Doesnt make sense?!
     @moves = Move.all
 
     respond_to do |format|
@@ -12,7 +12,7 @@ class MovesController < ApplicationController
 
   # GET /moves/1
   # GET /moves/1.json
-  def show
+  def show # Doesnt make sense?!
     @move = Move.find(params[:id])
 
     respond_to do |format|
@@ -23,7 +23,7 @@ class MovesController < ApplicationController
 
   # GET /moves/new
   # GET /moves/new.json
-  def new
+  def new # Doesnt make sense?!
     @move = Move.new
 
     respond_to do |format|
@@ -33,7 +33,7 @@ class MovesController < ApplicationController
   end
 
   # GET /moves/1/edit
-  def edit
+  def edit # Doesnt make sense?!
     @move = Move.find(params[:id])
   end
 
@@ -42,20 +42,28 @@ class MovesController < ApplicationController
   def create
     @move = Move.new(params[:move])
 
+    # create new move - value of the move e.g 0-8, letter of the move X or O, user that made the move, game_id, saved to the db at the save
+    # VALIDATIONS - 
+
     respond_to do |format|
       if @move.save
-        format.html { redirect_to @move, notice: 'Move was successfully created.' }
-        format.json { render json: @move, status: :created, location: @move }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @move.errors, status: :unprocessable_entity }
+
+        # Check game status, is there a winner?
+        # If there is a winner - change game status to game over, add user_ids to winner/loser columns
+        # Go back to the game show page
+
+      #   format.html { redirect_to @move, notice: 'Move was successfully created.' }
+      #   format.json { render json: @move, status: :created, location: @move }
+      # else
+      #   format.html { render action: "new" }
+      #   format.json { render json: @move.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PUT /moves/1
   # PUT /moves/1.json
-  def update
+  def update # Doesnt make sense?!
     @move = Move.find(params[:id])
 
     respond_to do |format|
@@ -71,7 +79,7 @@ class MovesController < ApplicationController
 
   # DELETE /moves/1
   # DELETE /moves/1.json
-  def destroy
+  def destroy # Doesn't make sense?!
     @move = Move.find(params[:id])
     @move.destroy
 

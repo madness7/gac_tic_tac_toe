@@ -1,20 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Current player:</b>
-  <%= @game.current_player_id %>
-</p>
+<div class="board_frame">
+  <h6>Current player:</h6>
 
-<p>
-  <b>Board:</b>
-  <%= @game.board %>
+  <% @game.moves.each do |move| %>
+
+    <%=link_to " ", "/play?value=" + move.id.to_s + "&game=" + @game.id.to_s %>
+  <% end %>
+</div>
+
+
+<!-- I. Draw a grid
+II. Create a helper that will be called for each cell. This helper returns either a link if the cell is empty(not played yet) or "X or O"
+III. Add a condition to call the helper only if the current_user is the one supposed to play the current turn
+
+Use @game.next_player
+create a method that checks if the game is won everytime there is a new move (in game model)
+
+Process 
+  -> Click on new game
+    -> go to games#new, a form appears with a dropdown to select the opponent
+      -> the form post to games#create and redirect to games#show
+        -> Everytime a player click on a cell, it post to /moves?cell_id=XX&game_id=YY
+          -> once we saved a new move in moves#create, we call @game.is_game_won?, if it says true then the game is finished , we can redirect on a won/lost page, otherwise we redirect to games#show and show the grid again
+ -->
+<!-- 0 1 2
+     3 4 5
+     6 7 8 -->
+     <!-- #each_slice -->
+
 </p>
 
 <p>
   <b>Userwin:</b>
-  <%= @game.userwin %>
+  <%#= @game.userwin %>
 </p>
 
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
+<!-- game template - one game  -->
+<!-- should only be able to make a move if it's your turn - Think comparing the user_id associated with the last move_id? If this matches the current player, then they have had there move and it is the next players turn -->
+<!-- If there are no moves (think game_id) are there any moves in the moves db with current game_id, then player 1 to make move and will be X -->

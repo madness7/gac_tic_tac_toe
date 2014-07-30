@@ -15,6 +15,8 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
 
+    # Load moves
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @game }
@@ -25,7 +27,7 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-
+# form on new for making a new game, usernames for the players. With button. sends info to create
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -44,6 +46,10 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
+        (1..9).each do |number|
+          Move.create value: number, game_id: @game.id
+        end
+        # game saved. User redirected to the game where they will see a board
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render json: @game, status: :created, location: @game }
       else
@@ -79,5 +85,8 @@ class GamesController < ApplicationController
       format.html { redirect_to games_url }
       format.json { head :no_content }
     end
+  end
+  def play
+    binding.pry
   end
 end

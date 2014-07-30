@@ -1,15 +1,12 @@
 Tttgame::Application.routes.draw do
     
   resources :moves
-
-
   resources :games
-
 
   root to: "users#index"
   get 'login', to: 'sessions#new'
   resources :sessions, only: [:new, :create, :destroy]  
-
+  get 'play', to: 'games#play'
   get "sessions/new"
 
   get "sessions/create"

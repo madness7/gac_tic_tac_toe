@@ -1,7 +1,7 @@
 class Move < ActiveRecord::Base
-  attr_accessible :game_id, :user_id
+  attr_accessible :game_id, :user_id, :current_player_id, :value
 
   belongs_to :user
-  belong_to :game
+  belongs_to :game
 
 end

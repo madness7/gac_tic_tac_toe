@@ -10,21 +10,18 @@ require 'pry-byebug'
 
 puts "HELLO!!! This is Tic Tac Toe!"
 
-puts "\nTWO players required for this game"
-puts "Player one will be X, and player two will be O."
-puts "Player one goes first. and you take it in You must decide who will be players one and two."
-puts "You can switch it up if you play again!\n\n"
- 
-# get and define player info:
+puts "\n2 Player Game"
+puts "P1 is X and goes first"
+"\n\n"
 
 puts "PLAYER ONE: What is your name?"
 @player_one = gets.chomp
-puts "Hello #{@player_one}, you are X. You go FIRST!\n\n"
+puts "Hi #{@player_one}, you are X. You go FIRST!\n\n"
  
 
 puts "PLAYER TWO: What is your name?"
 @player_two = gets.chomp
-puts "Hello #{@player_two}, you are O. You go SECOND!\n\n"
+puts "Hi #{@player_two}, you are O. You go SECOND!\n\n"
  
 # creates new hash which represents the cells on the Tic Tac Toe board
 @board = {
@@ -41,17 +38,18 @@ puts "Hello #{@player_two}, you are O. You go SECOND!\n\n"
 
 #try to use this 2d array to simplify the check for a winning condition below
 #considering whether I could reference the array index (within @winrows) rather than hash keys from @board
+
 @winrows = [
-['a1','a2','a3'],
-['b1','b2','b3'],
-['c1','c2','c3'],
-['a1','b1','c1'],
-['a2','b2','c2'],
-['a3','b3','c3'],
-['a1','b2','c3'],
-['c1','b2','a3']
+['0','1','2'],
+['3','4','5'],
+['6','7','8'],
+['0','3','6'],
+['1','4','7'],
+['2','5','8'],
+['0','4','8'],
+['6','4','2']
 ]
- binding.pry
+ # binding.pry
 # instance variable for winning pattern 
 @winx = " X  X  X "
 @wino = " O  O  O "    
@@ -119,7 +117,7 @@ end
     end
 end    
  
-# continually checks for a winning condition untill there is a tie
+# continually checks for a winning condition or until there is a tie. Uses winning line array rather than @board hash 
 while (@winrows[0]) != (@winx && @wino) && 
     (@winrows[1]) != (@winx && @wino) && (@winrows[2]) != (@winx && @wino) && 
     (@winrows[3]) != (@winx && @wino) && (@winrows[4]) != (@winx && @wino) && 
@@ -135,7 +133,7 @@ while (@winrows[0]) != (@winx && @wino) &&
          (@board[0] + @board[4] + @board[8]) == @winx || (@board[6] + @board[4] + @board[2]) == @winx
  
             puts "Good Effort, #{@player_one.upcase}, You Win!!!"
-            puts "WTF!!, #{@player_two}.  Loser!!!."
+            puts "WTF!!, #{@player_two.upcase}.  Loser!!!."
             puts "THE END\n\n"
             break # if player one is the winner
  
@@ -150,7 +148,7 @@ while (@winrows[0]) != (@winx && @wino) &&
             player_two_play
             print_board
  
-            if (@board[0] + @board[1] + @board[2])== @wino || (@board[3] + @board[4] + @board[5]) == @wino ||
+            if (@board[0] + @board[1] + @board[2]) == @wino || (@board[3] + @board[4] + @board[5]) == @wino ||
            (@board[6] + @board[7] + @board[8]) == @wino || (@board[0] + @board[3] + @board[6]) == @wino ||
            (@board[1] + @board[4] + @board[7]) == @wino || (@board[2] + @board[5] + @board[8]) == @wino || 
            (@board[0] + @board[4] + @board[8]) == @wino || (@board[6] + @board[4] + @board[2]) == @wino
