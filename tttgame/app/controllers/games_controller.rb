@@ -46,7 +46,9 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        (1..9).each do |number|
+        @game.status = {}
+        # binding.pry
+        (0..8).each do |number|
           Move.create value: number, game_id: @game.id
         end
         # game saved. User redirected to the game where they will see a board
@@ -77,6 +79,7 @@ class GamesController < ApplicationController
 
   # DELETE /games/1
   # DELETE /games/1.json
+  
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
@@ -86,7 +89,24 @@ class GamesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
   def play
-    binding.pry
+
+    @game = Game.find params["game_id"]
+    if @game.status.length.even?
+       m1 = Move.find params["moveid"]
+       m1.current_player_id = m1.game.current_player_id
+       m1.save
+       @game.status[m1.value] = 0
+       # binding.pry
+    else  
+       m2 = Move.find params["moveid"]
+       m2.user_id = m2.game.user_id
+       m2.save 
+       @game.status[m2.value] = 1  
+    end  
+    @game.checkwin? 
+# binding.pry
+      redirect_to game_path(params["game_id"]) 
   end
 end
