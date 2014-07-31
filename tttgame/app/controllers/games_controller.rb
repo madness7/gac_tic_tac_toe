@@ -16,6 +16,11 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     # Load moves
+    if @game.checkwin?
+      @message = "someone won"
+    else
+      @message = "no winner yet"
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -46,7 +51,6 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        @game.status = {}
         # binding.pry
         (0..8).each do |number|
           Move.create value: number, game_id: @game.id
@@ -93,20 +97,19 @@ class GamesController < ApplicationController
   def play
 
     @game = Game.find params["game_id"]
-    if @game.status.length.even?
+    
+    if @game.board.length.even?
        m1 = Move.find params["moveid"]
        m1.current_player_id = m1.game.current_player_id
        m1.save
-       @game.status[m1.value] = 0
-       # binding.pry
+       @game.board[m1.value] = 0
     else  
        m2 = Move.find params["moveid"]
        m2.user_id = m2.game.user_id
        m2.save 
-       @game.status[m2.value] = 1  
+       @game.board[m2.value] = 1  
     end  
-    @game.checkwin? 
-# binding.pry
-      redirect_to game_path(params["game_id"]) 
+      binding.pry
+      redirect_to game_path(@game) 
   end
 end
