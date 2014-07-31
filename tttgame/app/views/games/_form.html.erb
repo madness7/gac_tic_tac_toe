@@ -12,14 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Current_Player %><br />
-    <%= f.number_field :current_player_id %>
+    <%= f.label :current_player_id, "1st Player" %><br />
+    <%= f.collection_select :current_player_id, User.all, :id, :user_name, prompt: true %>
   </div>
   <div class="field">
-    <%= f.label :New_Player %><br />
-    <%= f.number_field :user_id %>
+    <%= f.label :user_id, "2nd Player" %><br />
+    <%= f.collection_select :user_id, User.all, :id, :user_name, prompt: true %>
   </div>
-
 
   <div class="actions">
     <%= f.submit %>

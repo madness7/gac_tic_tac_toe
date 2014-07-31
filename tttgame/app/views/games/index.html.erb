@@ -12,7 +12,9 @@
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.current_player_id %></td>
+    <% if game.winner_id %>
+      <td><%= find_winner_name(game.winner_id) %></td>
+    <% end %>
     <td><%#= game.board %></td>
     <td><%#= game.userwin %></td>
     <td><%= link_to 'Show', game %></td>
