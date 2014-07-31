@@ -17,9 +17,9 @@ class GamesController < ApplicationController
 
     # Load moves
     if @game.checkwin?
-      @message = "someone won"
+      @message = "We have a Winner"
     else
-      @message = "no winner yet"
+      @message = "Game in Progress, No Winner Yet"
     end
 
     respond_to do |format|

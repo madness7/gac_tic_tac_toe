@@ -1,30 +1,31 @@
-<p id="notice"><%= notice %></p>
-<%= @message %>
+  <p id="notice"><%= notice %></p>
+  <%= @message %>
 
-<div class="LeaderBoard">
-  <h3>Leader Board</h3>
+  <div class="LeaderBoard">
+    <h3>Leader Board</h3>
     <% calculate_leaderboard.each do |result| %>
     <p> <%= result[0]%>  Wins for <%= result[1]%> </p>
     <% end %>
-</div>
+  </div>
 
 </div>
 <div class="board_frame">
   <h6>Current player:</h6>
-<% @game.moves.each do |move| %>
+  <% @game.moves.each do |move| %>
   <%== board_display(move) %>
-<% end %>
- 
+  <% end %>
+
 </div>
 
-  </p>
+</p>
 
 <p>
-  <b>Userwin:</b>
+  <b></b>
   <%#= @game.userwin %>
 </p>
 
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
+
 

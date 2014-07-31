@@ -21,8 +21,7 @@ module GamesHelper
       end.count
       [winning_games_count, user.user_name]
     end
-    # binding.pry
-   results
+   results.sort
   end
 
 end
