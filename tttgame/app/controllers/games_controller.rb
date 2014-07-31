@@ -111,6 +111,18 @@ class GamesController < ApplicationController
     end  
       if @game.checkwin?
         winner_id = m1.current_player_id || user_id
+        current_player = @game.current_player_id
+        user_player = @game.user_id
+        if winner_id == current_player
+          @game.loser_id = user_player
+          @game.winner_id = current_player
+          @game.save
+        else
+          @game.loser_id = current_player
+          @game.winner_id = user_player
+          @game.save
+        end
+        binding.pry
         winner = User.find winner_id
         flash[:notice] = "You win! #{winner.user_name}"
       end
