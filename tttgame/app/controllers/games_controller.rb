@@ -113,17 +113,15 @@ class GamesController < ApplicationController
         winner_id = m1.current_player_id || user_id
         current_player = @game.current_player_id
         user_player = @game.user_id
-        if winner_id == current_player
-          @game.loser_id = user_player
-          @game.winner_id = current_player
-          @game.save
+        attrs = if winner_id == current_player
+          { loser_id: user_player, winner_id: current_player }
         else
-          @game.loser_id = current_player
-          @game.winner_id = user_player
-          @game.save
+          { loser_id: current_player , winner_id: user_player }
         end
-        binding.pry
+        @game.update_attributes(attrs)
+        # binding.pry
         winner = User.find winner_id
+        # instead, redirect to template saying "XX Player won the game"
         flash[:notice] = "You win! #{winner.user_name}"
       end
       redirect_to game_path(@game) 
