@@ -48,7 +48,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(params[:game])
-
+    @game.board.clear
     respond_to do |format|
       if @game.save
         # binding.pry
@@ -108,9 +108,9 @@ class GamesController < ApplicationController
        m1.user_id = m1.game.user_id
        m1.save 
        @game.board[m1.value] = 1  
-    end  
+    end 
       if @game.checkwin?
-        winner_id = m1.current_player_id || user_id
+        winner_id = m1.current_player_id || m1.user_id
         current_player = @game.current_player_id
         user_player = @game.user_id
         attrs = if winner_id == current_player
