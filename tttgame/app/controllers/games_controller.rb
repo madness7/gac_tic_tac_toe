@@ -104,12 +104,16 @@ class GamesController < ApplicationController
        m1.save
        @game.board[m1.value] = 0
     else  
-       m2 = Move.find params["moveid"]
-       m2.user_id = m2.game.user_id
-       m2.save 
-       @game.board[m2.value] = 1  
+       m1 = Move.find params["moveid"]
+       m1.user_id = m1.game.user_id
+       m1.save 
+       @game.board[m1.value] = 1  
     end  
-      binding.pry
+      if @game.checkwin?
+        winner_id = m1.current_player_id || user_id
+        winner = User.find winner_id
+        flash[:notice] = "You win! #{winner.user_name}"
+      end
       redirect_to game_path(@game) 
   end
 end

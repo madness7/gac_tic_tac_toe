@@ -27,7 +27,7 @@ class Game < ActiveRecord::Base
       result2 =  board[solution_array[1].to_i]
       result3 =  board[solution_array[2].to_i]
     
-      if (result1 == result2) && (result2 == result3)
+      if result1.present? && (result1 == result2) && (result2 == result3)
         return true
       end
     end
