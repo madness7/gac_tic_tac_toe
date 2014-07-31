@@ -48,6 +48,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(params[:game])
+    @game.current_player_id = current_user.id
     @game.board.clear
     respond_to do |format|
       if @game.save
@@ -123,6 +124,7 @@ class GamesController < ApplicationController
         winner = User.find winner_id
         # instead, redirect to template saying "XX Player won the game"
         flash[:notice] = "You win! #{winner.user_name}"
+        render action: "win" and return
       end
       redirect_to game_path(@game) 
   end

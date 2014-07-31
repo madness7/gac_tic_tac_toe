@@ -13,14 +13,16 @@ module GamesHelper
     u = User.find winner_id
     "#{u.user_name}"  
   end
+
   def calculate_leaderboard
     results = User.all.map do |user|
       winning_games_count = Game.all.select do |game|
         game.winner_id == user.id
-      end.count 
+      end.count
       [winning_games_count, user.user_name]
     end
-    results.sort
+    # binding.pry
+   results
   end
 
 end
