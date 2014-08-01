@@ -1,37 +1,46 @@
+
+
 body {
   background-image: url('/assets/greenbaize.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  color: white;
+  font-family: Noteworthy;
 }
 
 h1 {
-  color: white;
+  /*color: white;*/
   text-align: center;
 }
 
 span {
   color: red;
+  font-size: 2em;
 }
-p {
+
+/*td, p, h3 {
+  color:white;
+}*/
+/*p {
   color: white;
-}
+}*/
 
 a {
   text-decoration: none;
   color: white;
 }
 
-h3 {
+/*h3 {
   color: white;
-}
+}*/
 h6 {
   text-align: center;
-  color: white;
-}
-.leaderboard {
-  float: left  
+  /*color: white;*/
 }
 
+.leaderboard  {
+  text-align: center;
+}
 .board_frame a {
   display: inline-block;
   height: 50px;
@@ -41,6 +50,15 @@ h6 {
 .board_frame {
   margin: 0 auto;
   width: 15%;
+}
+
+.field {
+  text-align: center;
+  padding:  20px;
+}
+.actions {
+  text-align: center;
+  padding: 20px;
 }
 
 img {

@@ -19,7 +19,7 @@ class GamesController < ApplicationController
     if @game.checkwin?
       @message = "We have a Winner"
     else
-      @message = "Game in Progress, No Winner Yet"
+      @message = "Game in Progress"
     end
 
     respond_to do |format|
@@ -73,7 +73,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.update_attributes(params[:game])
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        # format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -123,7 +123,7 @@ class GamesController < ApplicationController
         # binding.pry
         winner = User.find winner_id
         # instead, redirect to template saying "XX Player won the game"
-        flash[:notice] = "You win! #{winner.user_name}"
+        flash[:notice] = "#{winner.user_name} You win! "
         render action: "win" and return
       end
       redirect_to game_path(@game) 
