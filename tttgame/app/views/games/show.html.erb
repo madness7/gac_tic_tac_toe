@@ -3,9 +3,14 @@
   <h1>Welcome to <span> TIC TAC TOE </span>for 2 players</h1>
   </header>
 
-  <p id="notice"><%#= notice %></p>
-  <%#= @message %>
+  <p id="notice"><%= notice %><%= @message %></p>
+  
 
+  <div class="leaderboard">
+    <h3>Leader Board</h3>
+    <% calculate_leaderboard.each do |result| %>
+    <p> <%= result[0]%>  - Wins for - <%= result[1]%> </p>
+    <% end %>
   </div>
 
   <div class="board_frame">
@@ -15,12 +20,6 @@
   
   </div>
 
-  <div class="LeaderBoard">
-    <h3>Leader Board</h3>
-    <% calculate_leaderboard.each do |result| %>
-    <p> <%= result[0]%>  - Wins for - <%= result[1]%> </p>
-    <% end %>
-  </div>
 
   </p>
 

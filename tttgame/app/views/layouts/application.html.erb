@@ -15,7 +15,7 @@
 <body>
   <header></header>
   <% if current_user %>
-     <p> Hello, <%= current_user.user_name %> </p>
+     <!-- <p> Hello, <%#= current_user.user_name %> </p> -->
      
     <% else %>
      <%= link_to 'Please login', login_path %>

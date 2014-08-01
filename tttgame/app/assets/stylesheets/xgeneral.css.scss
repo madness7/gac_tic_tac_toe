@@ -39,32 +39,33 @@ h6 {
 }
 
 .leaderboard  {
-  text-align: center;
-}
-.board_frame a {
+  width: 30%;
+  vertical-align: top;
+  margin-left: 20px;
   display: inline-block;
-  height: 50px;
-  width: 50px;
-  border: 1px solid black;
 }
+.board_frame a, .board_frame img {
+  display: inline-block;
+  border: 1px solid white;
+  width: 140px;
+  height: 140px;
+}
+
 .board_frame {
-  margin: 0 auto;
-  width: 15%;
+  display: inline-block;
+  width: 40%;
 }
 
 .field {
   text-align: center;
   padding:  20px;
 }
+
 .actions {
   text-align: center;
   padding: 20px;
 }
 
-img {
-  height: 51px;
-  width: 50px;
-}
 
 footer {
   text-align: center;
